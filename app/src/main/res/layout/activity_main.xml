@@ -9,6 +9,13 @@
        android:layout_width="70dp"
        android:layout_height="70dp"
        android:layout_margin="20dp"
-       android:background="@color/colorAccent"/>
+       android:background="@color/colorLayout"/>
+
+    <com.example.android.androidscrolltest.LayoutDragView2
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:background="@color/colorLayout2"/>
+
 
 </LinearLayout>
