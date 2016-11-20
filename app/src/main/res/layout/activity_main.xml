@@ -23,5 +23,10 @@
         android:layout_margin="20dp"
         android:background="@color/colorOffset" />
 
+    <com.example.android.androidscrolltest.LPDragView
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+        android:layout_margin="20dp"
+        android:background="@color/colorLP" />
 
 </LinearLayout>
