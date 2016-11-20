@@ -57,4 +57,13 @@
         android:layout_below="@id/view_l2"
         android:background="@color/colorST" />
 
+    <!-- line 3 -->
+    <com.example.android.androidscrolltest.ScrollerDragView
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+        android:layout_margin="20dp"
+        android:id="@+id/view_sr"
+        android:layout_below="@id/view_lp"
+        android:background="@color/colorSR" />
+
 </RelativeLayout>
