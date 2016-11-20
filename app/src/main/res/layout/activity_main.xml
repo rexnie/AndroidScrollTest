@@ -66,4 +66,13 @@
         android:layout_below="@id/view_lp"
         android:background="@color/colorSR" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/view_sr"
+        android:layout_below="@id/view_sb"
+        android:text="ViewDragHelperDemo"
+        android:textAllCaps="false"
+        android:onClick="onClick"/>
+
 </RelativeLayout>
