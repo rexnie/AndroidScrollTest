@@ -7,5 +7,7 @@
     <color name="colorLayout2">#ffd640</color>
     <color name="colorOffset">#c9ff40</color>
     <color name="colorLP">#80ff40</color>
+    <color name="colorSB">#40ffa9</color>
+    <color name="colorST">#40f2ff</color>
 
 </resources>

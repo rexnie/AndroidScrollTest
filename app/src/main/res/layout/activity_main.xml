@@ -1,32 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- line 1 -->
    <com.example.android.androidscrolltest.LayoutDragView
        android:layout_width="70dp"
        android:layout_height="70dp"
        android:layout_margin="20dp"
+       android:id="@+id/view_l"
+       android:layout_alignParentLeft="true"
        android:background="@color/colorLayout"/>
 
     <com.example.android.androidscrolltest.LayoutDragView2
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="20dp"
+        android:id="@+id/view_l2"
+        android:layout_toRightOf="@id/view_l"
         android:background="@color/colorLayout2"/>
 
     <com.example.android.androidscrolltest.OffsetDragView
         android:layout_height="70dp"
         android:layout_width="70dp"
         android:layout_margin="20dp"
+        android:id="@+id/view_offset"
+        android:layout_toRightOf="@id/view_l2"
         android:background="@color/colorOffset" />
 
+    <!-- line 2 -->
     <com.example.android.androidscrolltest.LPDragView
         android:layout_height="70dp"
         android:layout_width="70dp"
         android:layout_margin="20dp"
+        android:id="@+id/view_lp"
+        android:layout_below="@id/view_l"
         android:background="@color/colorLP" />
 
-</LinearLayout>
+    <com.example.android.androidscrolltest.ScrollByDragView
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+        android:layout_margin="20dp"
+        android:id="@+id/view_sb"
+        android:layout_toRightOf="@id/view_lp"
+        android:layout_below="@id/view_l2"
+        android:background="@color/colorSB" />
+
+    <com.example.android.androidscrolltest.ScrollToDragView
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+        android:layout_margin="20dp"
+        android:id="@+id/view_st"
+        android:layout_toRightOf="@id/view_sb"
+        android:layout_below="@id/view_l2"
+        android:background="@color/colorST" />
+
+</RelativeLayout>
