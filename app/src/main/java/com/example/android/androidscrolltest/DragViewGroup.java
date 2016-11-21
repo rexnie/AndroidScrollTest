@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
  */
 
 public class DragViewGroup extends FrameLayout {
-
     private ViewDragHelper mViewDragHelper;
     private View mMenuView, mMainView;
     private int mWidth;
@@ -60,29 +59,29 @@ public class DragViewGroup extends FrameLayout {
     }
 
     private void initView() {
-        mViewDragHelper = ViewDragHelper.create(this, callback);
+        mViewDragHelper = ViewDragHelper.create(this, mCallback);
     }
 
-    private ViewDragHelper.Callback callback =
+    private ViewDragHelper.Callback mCallback =
             new ViewDragHelper.Callback() {
 
-                // 何时开始检测触摸事件
                 @Override
                 public boolean tryCaptureView(View child, int pointerId) {
-                    //如果当前触摸的child是mMainView时开始检测
+                    //当滑动此layout中的子View时，调用此Api
+                    //如果当前触摸的child是mMainView时开始capture
                     return mMainView == child;
                 }
 
-                // 触摸到View后回调
                 @Override
                 public void onViewCaptured(View capturedChild,
                                            int activePointerId) {
+                    // 触摸到View后回调
                     super.onViewCaptured(capturedChild, activePointerId);
                 }
 
-                // 当拖拽状态改变，比如idle，dragging
                 @Override
                 public void onViewDragStateChanged(int state) {
+                    //0(idle)-->1(drag, captured)-->2(settling, released)-->0
                     super.onViewDragStateChanged(state);
                 }
 
@@ -93,13 +92,13 @@ public class DragViewGroup extends FrameLayout {
                     super.onViewPositionChanged(changedView, left, top, dx, dy);
                 }
 
-                // 处理垂直滑动
+                // 处理垂直滑动,不滑动垂直方向的话，return 0;
                 @Override
                 public int clampViewPositionVertical(View child, int top, int dy) {
-                    return 0;
+                    return top;
                 }
 
-                // 处理水平滑动
+                // 处理水平滑动,不滑动水平方向的话，return 0;
                 @Override
                 public int clampViewPositionHorizontal(View child, int left, int dx) {
                     return left;
@@ -110,14 +109,18 @@ public class DragViewGroup extends FrameLayout {
                 public void onViewReleased(View releasedChild, float xvel, float yvel) {
                     super.onViewReleased(releasedChild, xvel, yvel);
                     //手指抬起后缓慢移动到指定位置
-                    if (mMainView.getLeft() < 500) {
+                    if (mMainView.getLeft() < mWidth) {
                         //关闭菜单
                         //相当于Scroller的startScroll方法
-                        mViewDragHelper.smoothSlideViewTo(mMainView, 0, 0);
+                        mViewDragHelper.smoothSlideViewTo(mMainView, mMenuView.getLeft(),
+                                mMenuView.getTop());
+                        //触发DragViewGroup.computeScroll()调用
                         ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
                     } else {
                         //打开菜单
-                        mViewDragHelper.smoothSlideViewTo(mMainView, 300, 0);
+                        mViewDragHelper.smoothSlideViewTo(mMainView, mMenuView.getRight(),
+                                mMenuView.getTop());
+                        //触发DragViewGroup.computeScroll()调用
                         ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
                     }
                 }
